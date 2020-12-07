@@ -1,0 +1,79 @@
+zuul:
+  max:
+    host:
+      connections: 500
+  host:
+    #设置最大连接时间为1小时，具体启用的时间，在ribbon中设置，这个时间是个最大时间
+    socket-timeout-millis: 3600000
+    connect-timeout-millis: 3600000
+    stripPrefix: true
+
+#ribbon默认的serviceid，如果需要修改全局设置，则修改这个配置即可
+bus-ribbon-default-name:     
+  ribbon: 
+    NFLoadBalancerRuleClassName: gov.mof.fasp2.gateway.loadbancer.rule.BusBaseLoadBancerRule
+
+    
+#ribbon的默认超时配置,这个暂时也不生效
+ribbon:     
+  ReadTimeout: 3600000
+  ConnectTimeout: 3600000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
+  
+  #这个暂时也不启用，以ribbon的为准，设置为1小时或关闭
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3600000
+            
+spring:
+  application:
+    name: ${ifmis.gateway.outergatewayname}
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+  freemarker:
+    suffix: .html
+    request-context-attribute: request
+
+renren:
+  cluster: false  #集群配置  true集群环境   false单机环境，还需打开pom.xml里的spring-session-data-redis注释
+  globalSessionTimeout: 3600   #单机环境，session过期时间为60分钟
+  redis:
+    open: false  #是否开启redis缓存  true开启   false关闭
+
+
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: gov.mof.fasp2.gateway.manage.modules.*.entity
+  global-config:
+    #数据库相关配置
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID", ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: INPUT
+      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
+      field-strategy: NOT_NULL
+      #驼峰下划线转换
+      column-underline: true
+      logic-delete-value: -1
+      logic-not-delete-value: 0
+    banner: false
+# Tomcat
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
