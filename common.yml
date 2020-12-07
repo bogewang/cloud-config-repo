@@ -201,7 +201,7 @@ ifmis:
   fasp2:
     gateway:
 #      address: 10.104.28.50:20000
-      address: 192.168.2.118:80
+      address: 192.168.2.118:8080
   gateway:
     #微服务网管serviceid
     microservicegatewayname: ${MICROSERVICEGATEWAYNAME:ifmis-gateway-microservice}
