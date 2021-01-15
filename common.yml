@@ -23,11 +23,11 @@ spring:
       password: ${SERVER_PASSWORD:password}
       roles: ${SERVER_SUPERUSER:SUPERUSER}
   rabbitmq:
-    host: ${RABBITMQ_SERVER:192.168.2.118}
+    host: ${RABBITMQ_SERVER:10.0.0.118}
     port: ${RABBITMQ_SERVER_PORT:5672}
     username: ${RABBITMQ_SERVER_USERNAME:admin}
     password: ${RABBITMQ_SERVER_PASSWORD:123456}
-    addresses: ${RABBITMQ_SERVER:192.168.2.118}
+    addresses: ${RABBITMQ_SERVER:10.0.0.118}
     listener:
       direct:
         acknowledge-mode: manual
@@ -201,7 +201,7 @@ ifmis:
   fasp2:
     gateway:
 #      address: 10.104.28.50:20000
-      address: 192.168.2.118:20000
+      address: 10.0.0.118:20000
   gateway:
     #微服务网管serviceid
     microservicegatewayname: ${MICROSERVICEGATEWAYNAME:ifmis-gateway-microservice}
