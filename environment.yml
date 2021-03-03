@@ -24,7 +24,7 @@ OUTERGATEWAYNAME: ifmis-gateway-outer-xj
 MICROSERVICEGATEWAYNAME: ifmis-gateway-microservice-xj
 #ORCLDATASOURCE: jdbc:oracle:thin:@localhost:1521:orcl
 #ORCLUSER: C##EFMIS430000
-ORCLDATASOURCE: jdbc:oracle:thin:@192.168.3.50/orcl
+ORCLDATASOURCE: jdbc:oracle:thin:@10.0.0.99:1521/orcl
 ORCLUSER: ifmis_34
 CONFIG_SERVER: 10.0.0.118
 CONFIG_SERVER_PORT: 8880
